@@ -28,7 +28,7 @@ public class BowlingGameTest {
      * 1.判断输入数据是否符合规则
      * a.计分次数不够或者超出(不考虑每局pin是否符合规则)，最多有21次计分，最少有11次计分
      * b.考虑每局分数是否符合规则(每局每次计分不应超过10或者小于0)
-     * c.相邻
+     * c.在第十局以前每轮总分不能超过10
      */
     @Test
     void inputArrayLengthShouldNotMoreThan21NotLess10WithoutEveryPin() {
@@ -48,7 +48,11 @@ public class BowlingGameTest {
         assertFalse(BowlingGame.isInputFollowRule(gameInfo_exist_pin_less_than_0));
     }
 
-
+    @Test
+    void inOneFrameSpareTotalScoreShouldLess10(){
+        int[] gameInfo_one_frame_spare_more_than_10 = {9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,10};
+        assertFalse(BowlingGame.isInputFollowRule(gameInfo_one_frame_spare_more_than_10));
+    }
 
 
 
