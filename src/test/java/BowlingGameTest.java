@@ -48,7 +48,7 @@ public class BowlingGameTest {
         assertFalse(BowlingGame.isInputFollowRule(gameInfo_exist_pin_less_than_0));
     }
 
-    
+
 
 
 
