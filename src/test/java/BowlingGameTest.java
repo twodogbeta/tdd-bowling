@@ -55,7 +55,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    void aferTenthFrameInputShouldFollowRule(){
+    void afterTenthFrameInputShouldFollowRule(){
         //第十局全中，最后应该投两次，投其他次数错误
         int[] gameInfo_last_frame_not_rule1 = {10,10,10,10,10,10,10,10,10,10,1};
         int[] gameInfo_last_frame_not_rule2 = {10,10,10,10,10,10,10,10,10,10};
@@ -71,6 +71,18 @@ public class BowlingGameTest {
         assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule4));
         assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule5));
         assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule6));
+
+    }
+
+    @Test
+    void countShouldReturnRight(){
+        int[] gameInfo1 ={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int[] gameInfo2 ={10,10,10,10,10,10,10,10,10,10,10,10};
+        //except:204
+        int[] gameInfo3 ={10,8,2,10,10,10,7,1,10,10,6,4,5,5,10};
+        assertEquals(0,BowlingGame.countScore(gameInfo1));
+        assertEquals(300,BowlingGame.countScore(gameInfo2));
+        assertEquals(204,BowlingGame.countScore(gameInfo3));
 
     }
 

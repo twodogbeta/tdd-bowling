@@ -4,6 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Frame {
+    class FrameAndIsFollowRule{
+        public FrameAndIsFollowRule(List<Frame> frames, boolean isRule){
+            this.frames = frames;
+            this.isRule = isRule;
+        }
+        private List<Frame> frames;
+        private boolean isRule;
+
+        public List<Frame> getFrames() {
+            return frames;
+        }
+
+        public void setFrames(List<Frame> frames) {
+            this.frames = frames;
+        }
+    }
 
     public static int countOneFrameScore(List<Integer> throwList){
         int totalScore = 0;
