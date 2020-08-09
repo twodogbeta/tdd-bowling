@@ -54,6 +54,25 @@ public class BowlingGameTest {
         assertFalse(BowlingGame.isInputFollowRule(gameInfo_one_frame_spare_more_than_10));
     }
 
+    @Test
+    void aferTenthFrameInputShouldFollowRule(){
+        //第十局全中，最后应该投两次，投其他次数错误
+        int[] gameInfo_last_frame_not_rule1 = {10,10,10,10,10,10,10,10,10,10,1};
+        int[] gameInfo_last_frame_not_rule2 = {10,10,10,10,10,10,10,10,10,10};
+        //第十局补中，最后应该投一次，投其他次数错误
+        int[] gameInfo_last_frame_not_rule3 = {10,10,10,10,10,10,10,10,10,5,5,9,9};
+        int[] gameInfo_last_frame_not_rule4 = {10,10,10,10,10,10,10,10,10,5,5};
+        //第十局既不补中也不全中，最后应该投0次，投其他次数错误
+        int[] gameInfo_last_frame_not_rule5 = {10,10,10,10,10,10,10,10,10,5,4,1};
+        int[] gameInfo_last_frame_not_rule6 = {10,10,10,10,10,10,10,10,10,5,4,1,9};
+        assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule1));
+        assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule2));
+        assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule3));
+        assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule4));
+        assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule5));
+        assertFalse(BowlingGame.isInputFollowRule(gameInfo_last_frame_not_rule6));
+
+    }
 
 
 

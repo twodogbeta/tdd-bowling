@@ -34,8 +34,20 @@ public class BowlingGame {
                 if (Frame.countOneFrameScore(throwList) > 10)
                     return false;
             }
+            else if (frameList.size() == 10)
+                break;
         }
 
+        //根据第十轮分数判断后面的数据是否合格
+        int tenthFrameScore = Frame.countOneFrameScore(frameList.get(9).getThrowList());
+        //第十局之后的投球次数
+        int afterTenthThrowTimes = gameInfo.length - i;
+        if (tenthFrameScore == 10 && frameList.get(9).getThrowTimes() == 1 && afterTenthThrowTimes != 2)
+            return false;
+        else if (tenthFrameScore == 10 && frameList.get(9).getThrowTimes() == 2 && afterTenthThrowTimes != 1)
+            return false;
+        else if (tenthFrameScore < 10  && afterTenthThrowTimes != 0)
+            return false;
         return true;
     }
 }

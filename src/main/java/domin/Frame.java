@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Frame {
+
     public static int countOneFrameScore(List<Integer> throwList){
         int totalScore = 0;
         for (Integer throwScore : throwList) {
