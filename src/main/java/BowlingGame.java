@@ -62,39 +62,34 @@ public class BowlingGame {
                 Frame currentFrame = frameListGlobal.get(i);
                 Frame nextFrame = frameListGlobal.get(i + 1);
                 Frame nextNextFrame = frameListGlobal.get(i + 2);
-                if (currentFrame.getThrowTimes() == 1) {
-                    if (nextFrame.getThrowTimes() == 1)
+                if (Frame.isStrike(currentFrame)) {
+                    if (Frame.isStrike(nextFrame))
                         totalScore += 20 + nextNextFrame.getThrowList().get(0);
                     else totalScore += 10 + Frame.countOneFrameScore(nextFrame.getThrowList());
-                } else if (currentFrame.getThrowTimes() == 2 &&
-                        Frame.countOneFrameScore(currentFrame.getThrowList()) == 10)
+                } else if (Frame.isSpare(currentFrame))
                     totalScore += 10 + nextFrame.getThrowList().get(0);
                 else totalScore += Frame.countOneFrameScore(currentFrame.getThrowList());
 
 
             }
             //第九轮(1.strike ,2.apare 3.not any)
-            if (Frame.countOneFrameScore(frameListGlobal.get(8).getThrowList()) == 10
-                    && frameListGlobal.get(8).getThrowTimes() == 1){
-                if (Frame.countOneFrameScore(frameListGlobal.get(9).getThrowList()) == 10
-                        && frameListGlobal.get(9).getThrowTimes() == 1)
+            Frame ninthFrame = frameListGlobal.get(8);
+            Frame tenthFrame = frameListGlobal.get(9);
+            if (Frame.isStrike(ninthFrame)) {
+                if (Frame.isStrike(tenthFrame))
                     totalScore += 10 + 10 + gameInfo[gameInfo.length - 2];
-                else totalScore += 10 +Frame.countOneFrameScore(frameListGlobal.get(9).getThrowList());
+                else totalScore += 10 + Frame.countOneFrameScore(tenthFrame.getThrowList());
             }
-
             //spare
-           else if (Frame.countOneFrameScore(frameListGlobal.get(8).getThrowList()) == 10
-                    && frameListGlobal.get(8).getThrowTimes() == 2)
-                totalScore += 10 + frameListGlobal.get(9).getThrowList().get(0);
+            else if (Frame.isSpare(ninthFrame))
+                totalScore += 10 + tenthFrame.getThrowList().get(0);
 
-           //notany
-            else Frame.countOneFrameScore(frameListGlobal.get(8).getThrowList());
-
-
+                //notany
+            else Frame.countOneFrameScore(ninthFrame.getThrowList());
 
 
             //第10轮（如果第十轮全中或者补中，都计算后三次的pin当做第十轮总分）
-            if (Frame.countOneFrameScore(frameListGlobal.get(9).getThrowList()) == 10)
+            if (Frame.isStrike(tenthFrame) || Frame.isSpare(tenthFrame))
                 totalScore += gameInfo[gameInfo.length - 3] + gameInfo[gameInfo.length - 1] + gameInfo[gameInfo.length - 2];
             else totalScore += Frame.countOneFrameScore(frameListGlobal.get(9).getThrowList());
             return totalScore;

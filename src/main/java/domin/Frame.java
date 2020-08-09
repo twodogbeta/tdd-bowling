@@ -4,21 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Frame {
-    class FrameAndIsFollowRule{
-        public FrameAndIsFollowRule(List<Frame> frames, boolean isRule){
-            this.frames = frames;
-            this.isRule = isRule;
-        }
-        private List<Frame> frames;
-        private boolean isRule;
+    //判断strike
+    public static boolean isStrike(Frame frame){
+        if (frame.getThrowList().get(0) == 10)
+            return true;
+        return false;
+    }
 
-        public List<Frame> getFrames() {
-            return frames;
-        }
-
-        public void setFrames(List<Frame> frames) {
-            this.frames = frames;
-        }
+    //判断 spare
+    public static boolean isSpare(Frame frame){
+        if (frame.getThrowList().get(0) != 10 && frame.getThrowList().get(0) + frame.getThrowList().get(1) == 10)
+            return true;
+        return false;
     }
 
     public static int countOneFrameScore(List<Integer> throwList){
